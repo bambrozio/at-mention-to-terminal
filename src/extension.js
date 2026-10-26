@@ -2,8 +2,14 @@ const vscode = require("vscode");
 
 // Builds the same text Claude Code's own "Insert At-Mentioned" command produces:
 // a workspace-relative path plus an optional #Lstart-end line range.
+// Control characters (newline, ESC, ...) would act as keystrokes in the terminal,
+// e.g. a crafted file name could run a command in a shell. '"' and '#' would be
+// misread by Claude Code, so the official command refuses them too.
+const UNSAFE_PATH = /[\u0000-\u001f\u007f-\u009f"#]/;
+
 function buildMention(editor) {
   const path = vscode.workspace.asRelativePath(editor.document.uri, false);
+  if (UNSAFE_PATH.test(path)) return null;
   const sel = editor.selection;
   let range = "";
   if (!sel.isEmpty) {
@@ -28,7 +34,14 @@ function activate(context) {
         vscode.window.showWarningMessage("No active terminal to send the @-mention to.");
         return;
       }
-      terminal.sendText(buildMention(editor), false);
+      const mention = buildMention(editor);
+      if (mention === null) {
+        vscode.window.showWarningMessage(
+          "This file's path contains characters that can't be sent safely as an @-mention."
+        );
+        return;
+      }
+      terminal.sendText(mention, false);
       terminal.show(false);
       // show(false) alone doesn't always move focus when the panel is already visible.
       await vscode.commands.executeCommand("workbench.action.terminal.focus");

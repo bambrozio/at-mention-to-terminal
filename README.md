@@ -87,7 +87,7 @@ You can also run the command from the Command Palette: **At-Mention to Terminal:
 
 - **Typed, not sent through the IDE.** Because the mention is typed into the terminal, it works with any program running there. It doesn't use other parts of the IDE connection; Claude Code features such as diff views and selection sync still depend on `/ide`.
 - **Active terminal = last used.** With several terminals open, it's the one you last focused or created. If no terminal is open, you get a warning and nothing is sent.
-- **Unusual paths.** Paths that contain `"` or `#` are sent as-is and may be misread by Claude Code (the official command refuses them for the same reason).
+- **Unusual paths are refused.** Paths containing `"`, `#` or control characters (such as a newline) are not sent; you get a warning instead. `"` and `#` would be misread by Claude Code (the official command refuses them too), and control characters would act as keystrokes in the terminal.
 
 ## Development
 

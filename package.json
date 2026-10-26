@@ -12,9 +12,20 @@
   },
   "bugs": "https://github.com/bambrozio/at-mention-to-terminal/issues",
   "homepage": "https://github.com/bambrozio/at-mention-to-terminal#readme",
-  "keywords": ["claude", "claude code", "at-mention", "mention", "terminal", "ai"],
-  "categories": ["Other"],
-  "engines": { "vscode": "^1.80.0" },
+  "keywords": [
+    "claude",
+    "claude code",
+    "at-mention",
+    "mention",
+    "terminal",
+    "ai"
+  ],
+  "categories": [
+    "Other"
+  ],
+  "engines": {
+    "vscode": "^1.80.0"
+  },
   "main": "./src/extension.js",
   "activationEvents": [],
   "contributes": {
@@ -40,5 +51,8 @@
   },
   "devDependencies": {
     "@vscode/vsce": "^3.2.1"
+  },
+  "overrides": {
+    "@azure/msal-node": "^7.1.1"
   }
 }
