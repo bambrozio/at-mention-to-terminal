@@ -4,6 +4,7 @@
   "description": "Send an @file#L10-21 mention of your current selection to the terminal you last used, and move focus there. Built for running several Claude Code CLI sessions in one VS Code window. Unofficial; not affiliated with Anthropic.",
   "version": "0.1.0",
   "publisher": "bambrozio",
+  "icon": "images/icon.png",
   "license": "MIT",
   "author": "Bruno Ambrozio",
   "repository": {
