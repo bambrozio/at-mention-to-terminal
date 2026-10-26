@@ -1,0 +1,44 @@
+{
+  "name": "at-mention-to-terminal",
+  "displayName": "At-Mention to Terminal",
+  "description": "Send an @file#L10-21 mention of your current selection to the terminal you last used, and move focus there. Built for running several Claude Code CLI sessions in one VS Code window. Unofficial; not affiliated with Anthropic.",
+  "version": "0.1.0",
+  "publisher": "bambrozio",
+  "license": "MIT",
+  "author": "Bruno Ambrozio",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/bambrozio/at-mention-to-terminal.git"
+  },
+  "bugs": "https://github.com/bambrozio/at-mention-to-terminal/issues",
+  "homepage": "https://github.com/bambrozio/at-mention-to-terminal#readme",
+  "keywords": ["claude", "claude code", "at-mention", "mention", "terminal", "ai"],
+  "categories": ["Other"],
+  "engines": { "vscode": "^1.80.0" },
+  "main": "./src/extension.js",
+  "activationEvents": [],
+  "contributes": {
+    "commands": [
+      {
+        "command": "atMentionToTerminal.send",
+        "title": "At-Mention to Terminal: Send Selection to Active Terminal"
+      }
+    ],
+    "keybindings": [
+      {
+        "command": "atMentionToTerminal.send",
+        "key": "ctrl+alt+k",
+        "mac": "cmd+alt+k",
+        "when": "editorTextFocus"
+      }
+    ]
+  },
+  "scripts": {
+    "check": "node --check src/extension.js",
+    "package": "vsce package",
+    "publish": "vsce publish"
+  },
+  "devDependencies": {
+    "@vscode/vsce": "^3.2.1"
+  }
+}
